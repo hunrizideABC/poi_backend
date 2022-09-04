@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.poi.mapper.PoiUnionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.poi.model.PoiUnion">
+        <id column="id" property="id" />
+        <result column="displayname" property="displayname" />
+        <result column="category_level1" property="categoryLevel1" />
+        <result column="category_level2" property="categoryLevel2" />
+        <result column="category_level3" property="categoryLevel3" />
+        <result column="address" property="address" />
+        <result column="province" property="province" />
+        <result column="city" property="city" />
+        <result column="county" property="county" />
+        <result column="lng" property="lng" />
+        <result column="lat" property="lat" />
+        <result column="create_time" property="createTime" />
+        <result column="status" property="status" />
+    </resultMap>
+
+</mapper>

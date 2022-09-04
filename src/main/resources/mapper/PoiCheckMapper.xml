@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.poi.mapper.PoiCheckMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.poi.model.PoiCheck">
+        <id column="id" property="id" />
+        <result column="poi_id" property="poiId" />
+        <result column="admin_id" property="adminId" />
+        <result column="displayname" property="displayname" />
+        <result column="category_level1" property="categoryLevel1" />
+        <result column="category_level2" property="categoryLevel2" />
+        <result column="category_level3" property="categoryLevel3" />
+        <result column="address" property="address" />
+        <result column="province" property="province" />
+        <result column="city" property="city" />
+        <result column="county" property="county" />
+        <result column="lng" property="lng" />
+        <result column="lat" property="lat" />
+        <result column="create_time" property="createTime" />
+        <result column="check_status" property="checkStatus" />
+        <result column="check_desc" property="checkDesc" />
+        <result column="src" property="src" />
+        <result column="status" property="status" />
+    </resultMap>
+
+</mapper>
