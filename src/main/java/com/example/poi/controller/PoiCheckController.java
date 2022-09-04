@@ -9,8 +9,11 @@ import com.example.poi.model.PoiUnion;
 import com.example.poi.service.PoiCheckService;
 import com.example.poi.service.PoiUnionService;
 import com.example.poi.service.UmsAdminService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -21,7 +24,9 @@ import org.springframework.web.bind.annotation.*;
  * @author test
  * @since 2022-09-03
  */
-@RestController
+@Controller
+@Api(tags = "poiCheck")
+@Tag(name = "poiCheck",description = "poi审核管理")
 @RequestMapping("/poiCheck")
 public class PoiCheckController {
     @Autowired
@@ -39,11 +44,11 @@ public class PoiCheckController {
     public CommonResult<CommonPage<PoiCheck>> list(@RequestParam(value = "status", defaultValue = "0") Integer status,
                                                    @RequestParam(value = "username", required = false) String username,
                                                    @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
-                                                   @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum
+                                                   @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
+                                                   @RequestParam(value = "poi_id", defaultValue = "-1") Long poi_id
                                                    ) {
         Long adminId = adminService.getCacheService().getAdmin(username).getId();
-        System.out.println(adminId);
-        Page<PoiCheck> poiCheckList = poiCheckService.list(adminId,status, pageSize, pageNum);
+        Page<PoiCheck> poiCheckList = poiCheckService.list(adminId, status, poi_id, pageSize, pageNum);
         return CommonResult.success(CommonPage.restPage(poiCheckList));
     }
 
@@ -51,7 +56,9 @@ public class PoiCheckController {
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult update(@PathVariable Long id, @RequestBody PoiCheck poiCheck) {
+        poiCheck.setStatus(1);
         boolean success_1 = poiCheckService.update(id, poiCheck);
+
         PoiUnion poiUnion = new PoiUnion();
         poiUnion.setLng(poiCheck.getLng());
         poiUnion.setLat(poiCheck.getLat());

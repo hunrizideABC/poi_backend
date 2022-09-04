@@ -9,6 +9,7 @@ import com.example.poi.mapper.PoiCheckMapper;
 import com.example.poi.mapper.UmsAdminRoleRelationMapper;
 import com.example.poi.model.PoiCheck;
 
+import com.example.poi.model.PoiUnion;
 import com.example.poi.service.PoiCheckService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,7 +45,6 @@ public class PoiCheckServiceImpl extends ServiceImpl<PoiCheckMapper, PoiCheck> i
         List<Long> adminIds = umsAdminRoleRelationMapper.getAdminIdListBySrc(src);
         double poi_size = poiChecklist.size();
         double admin_size = adminIds.size();
-        System.out.println(admin_size);
         int batch_size = (int)Math.ceil(poi_size/admin_size);
         for(int i=0;i<admin_size;i++){
             Long adminId = adminIds.get(i);
@@ -67,7 +67,6 @@ public class PoiCheckServiceImpl extends ServiceImpl<PoiCheckMapper, PoiCheck> i
         List<Long> adminIds = umsAdminRoleRelationMapper.getAdminIdListBySrc(src);
         double poi_size = poiChecklist.size();
         double admin_size = adminIds.size();
-        System.out.println(admin_size);
         int batch_size = (int)Math.ceil(poi_size/admin_size);
         for(int i=0;i<admin_size;i++){
             Long adminId = adminIds.get(i);
@@ -105,7 +104,7 @@ public class PoiCheckServiceImpl extends ServiceImpl<PoiCheckMapper, PoiCheck> i
     }
 
     @Override
-    public Page<PoiCheck> list(Long adminId, Integer status, Integer pageSize, Integer pageNum) {
+    public Page<PoiCheck> list(Long adminId, Integer status, Long poi_id, Integer pageSize, Integer pageNum) {
         Page<PoiCheck> page = new Page<>(pageNum,pageSize);
         QueryWrapper<PoiCheck> wrapper = new QueryWrapper<>();
         LambdaQueryWrapper<PoiCheck> lambda = wrapper.lambda();
@@ -114,6 +113,9 @@ public class PoiCheckServiceImpl extends ServiceImpl<PoiCheckMapper, PoiCheck> i
         if(!src.equals(0)){
             lambda.like(PoiCheck::getSrc,src);
             lambda.like(PoiCheck::getAdminId,adminId);
+        }
+        if(!poi_id.equals(-1l)){
+            lambda.eq(PoiCheck::getPoiId,poi_id);
         }
         lambda.orderByDesc(PoiCheck::getCreateTime);
         return page(page,wrapper);

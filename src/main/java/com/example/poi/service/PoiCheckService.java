@@ -49,5 +49,5 @@ public interface PoiCheckService extends IService<PoiCheck> {
     /**
      * 分页查询poi
      */
-    Page<PoiCheck> list(Long adminId, Integer src, Integer pageSize, Integer pageNum);
+    Page<PoiCheck> list(Long adminId, Integer src, Long poi_id, Integer pageSize, Integer pageNum);
 }

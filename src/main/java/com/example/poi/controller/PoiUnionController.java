@@ -38,7 +38,7 @@ public class PoiUnionController {
                                                    @RequestParam(value = "addresskeyword", required = false) String addresskeyword,
                                                    @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
                                                    @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
-                                                   @RequestParam(value = "poi_id", defaultValue = "-1l") Long poi_id) {
+                                                   @RequestParam(value = "poi_id", defaultValue = "-1") Long poi_id) {
         Page<PoiUnion> poiUnionList = poiUnionService.list(displaynamekeyword,addresskeyword, poi_id, pageSize, pageNum);
         return CommonResult.success(CommonPage.restPage(poiUnionList));
     }
