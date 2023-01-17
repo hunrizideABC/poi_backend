@@ -31,7 +31,6 @@ public class UmsResourceCategoryController {
         List<UmsResourceCategory> resourceList = resourceCategoryService.listAll();
         return CommonResult.success(resourceList);
     }
-
     @ApiOperation("添加后台资源分类")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
@@ -43,7 +42,6 @@ public class UmsResourceCategoryController {
             return CommonResult.failed();
         }
     }
-
     @ApiOperation("修改后台资源分类")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
@@ -57,7 +55,6 @@ public class UmsResourceCategoryController {
             return CommonResult.failed();
         }
     }
-
     @ApiOperation("根据ID删除后台资源")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     @ResponseBody

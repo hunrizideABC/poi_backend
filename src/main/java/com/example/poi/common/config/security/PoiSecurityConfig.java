@@ -49,9 +49,6 @@ public class PoiSecurityConfig {
                     map.put(resource.getUrl(), new org.springframework.security.access.SecurityConfig(resource.getId() + ":" + resource.getName()));
                 }
                 return map;
-
-
-
             }
         };
     }

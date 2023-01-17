@@ -16,6 +16,16 @@ public class Tests_union {
     @Autowired
     private PoiUnionService poiUnionService;
 
+    @Test
+    public void  testquery()  {
+        Page<PoiUnion> poiList= poiUnionService.list("","",87l,10,1);
+        List<PoiUnion> test = poiList.getRecords();
+        for(PoiUnion poiUnion:test){
+            System.out.println(poiUnion.getDisplayname());
+            System.out.println(poiUnion.getAddress());
+        }
+
+    }
 
     public List<String> readTxt(String path) {
         List<String> lists = new ArrayList<>();
@@ -66,15 +76,6 @@ public class Tests_union {
 //        poiUnionService.createbatch(poiUnionList);
 //    }
 
-    @Test
-    public void  testquery()  {
-        Page<PoiUnion> poiList= poiUnionService.list("","",87l,10,1);
-        List<PoiUnion> test = poiList.getRecords();
-        for(PoiUnion poiUnion:test){
-            System.out.println(poiUnion.getDisplayname());
-            System.out.println(poiUnion.getAddress());
-        }
 
-    }
 
 }

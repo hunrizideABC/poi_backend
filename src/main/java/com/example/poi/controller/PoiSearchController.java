@@ -17,7 +17,7 @@ import java.util.List;
 
 @Controller
 @Api(tags = "poiSearch")
-@Tag(name = "poiSearch",description = "poi审核管理")
+@Tag(name = "poiSearch",description = "poi搜索管理")
 @RequestMapping("/poiSearch")
 public class PoiSearchController {
     @Autowired

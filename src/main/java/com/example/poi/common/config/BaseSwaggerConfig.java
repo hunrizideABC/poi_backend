@@ -20,6 +20,11 @@ import java.util.List;
  */
 public abstract class BaseSwaggerConfig {
 
+    /**
+     * 自定义Swagger配置
+     */
+    public abstract SwaggerProperties swaggerProperties();
+
     @Bean
     public Docket createRestApi() {
         System.out.println("SwaggerConfig-Docket");
@@ -76,8 +81,5 @@ public abstract class BaseSwaggerConfig {
         return result;
     }
 
-    /**
-     * 自定义Swagger配置
-     */
-    public abstract SwaggerProperties swaggerProperties();
+
 }
